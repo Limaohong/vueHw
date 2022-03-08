@@ -39,6 +39,15 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/LoginView.vue'),
+  },
+  {
+    path: '/admin/:pathMatch(.*)*',
+    redirect: { name: 'Login' },
+  },
 ];
 
 const router = createRouter({

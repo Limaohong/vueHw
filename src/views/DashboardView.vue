@@ -1,9 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <router-link class="navbar-brand" to="/admin"
-        >什麼都賣量販後台</router-link
-      >
+      <router-link class="navbar-brand" to="/admin">隨便逛逛</router-link>
       <a class="navbar-brand" href="#">後台</a>
       <button
         class="navbar-toggler"
@@ -34,3 +32,23 @@
   </nav>
   <router-view />
 </template>
+<script>
+export default {
+  data() {
+    return {
+      status: false,
+    };
+  },
+  created() {
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    this.$http.defaults.headers.common.Authorization = `${token}`;
+    const api = `${process.env.VUE_APP_API}api/user/check`;
+    this.$http.post(api)
+      .then(() => {
+        this.status = true;
+      }).catch(() => {
+        this.$router.push('/');
+      });
+  },
+};
+</script>
