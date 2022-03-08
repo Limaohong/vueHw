@@ -28,13 +28,14 @@ export default {
   },
   methods: {
     getProduct() {
-      this.$http({
-        url: 'products/all',
-        method: 'get',
-        crossdomain: true,
-      }).then((res) => {
-        this.products = res.data.products;
-      });
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`;
+      this.$http.get(api)
+        .then((res) => {
+          this.products = res.data.products;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   mounted() {

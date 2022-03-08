@@ -44,10 +44,10 @@ const routes = [
     name: 'Login',
     component: () => import('../views/LoginView.vue'),
   },
-  {
-    path: '/admin/:pathMatch(.*)*',
-    redirect: { name: 'Login' },
-  },
+  // {
+  //   path: '/admin/:pathMatch(.*)*',
+  //   redirect: { name: 'Login' },
+  // },
 ];
 
 const router = createRouter({

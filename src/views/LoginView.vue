@@ -43,14 +43,14 @@ export default {
   data() {
     return {
       user: {
-        username: '',
-        password: '',
+        username: 'n531396008@gmail.com',
+        password: 'a531396008003',
       },
     };
   },
   methods: {
     signIn() {
-      const api = `${process.env.VUE_APP_API}admin/signin`;
+      const api = `${process.env.VUE_APP_API}/admin/signin`;
       console.log(api);
       this.$http.post(api, this.user)
         .then((res) => {
