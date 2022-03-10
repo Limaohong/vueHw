@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/admin">隨便逛逛</router-link>
-      <a class="navbar-brand" href="#">後台</a>
+      <router-link class="navbar-brand" to="/admin">後台</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -25,6 +25,9 @@
             <router-link class="nav-link" to="/admin/coupon"
               >後台優惠券列表</router-link
             >
+          </li>
+          <li class="nav-item">
+            <a href="#" @click.prevent="logout" class="nav-link">登出</a>
           </li>
         </ul>
       </div>
@@ -51,6 +54,20 @@ export default {
       }).catch(() => {
         this.$router.push('/');
       });
+  },
+  methods: {
+    logout() {
+      const api = `${process.env.VUE_APP_API}/logout`;
+      this.$http.post(api)
+        .then((response) => {
+          alert('登出');
+          if (response.data.success) {
+            this.$router.push('/');
+          }
+        }).catch((error) => {
+          alert(error.response);
+        });
+    },
   },
 };
 </script>
